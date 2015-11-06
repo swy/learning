@@ -1,0 +1,41 @@
+<?xml version="1.0" standalone="yes"?>
+<installer-script authoringTool="com.apple.PackageMaker" authoringToolVersion="3.0.5" authoringToolBuild="196.1" minSpecVersion="1">
+    <title>Fiery Printer Driver</title>
+    <allowed-os-versions>
+        <os-version min="10.7"/>
+    </allowed-os-versions>
+    <background file="./background1.png" alignment="topleft" scaling="none"/>
+    <license file="License.rtf"/>
+    <pkg-ref auth="Root" id="com.efi.FieryPrinterDriverInstaller">
+        <bundle-version>
+            <bundle CFBundleShortVersionString="5.0.005.0" CFBundleVersion="5.0.005.0" id="com.efi.print.pde.EEA8FCDE-45C4-4582-8DB6-3E40DEBBF29F.PInf" path="Contents/Resources/User Software/OSX/Printer Driver/PluginX64_yosemite/EF018454 (FF).plugin"/>
+            <bundle CFBundleShortVersionString="5.4.0.05" CFBundleVersion="5.4.0.05" id="com.efi.GradInterface" path="Contents/Resources/User Software/OSX/Printer Driver/Fiery Driver Updater.app/Contents/Resources/GradInterface.bundle"/>
+            <bundle CFBundleShortVersionString="5.0.004.0" CFBundleVersion="5.0.004.0" id="com.yourcompany.FieryCFFilter" path="Contents/Resources/User Software/OSX/Printer Driver/fieryd/FieryCFFilter.app"/>
+            <bundle CFBundleShortVersionString="1.6.0.04" CFBundleVersion="1.6.0.04" id="com.efi.FierySoftwareUninstaller" path="Contents/Resources/User Software/OSX/Printer Driver/Fiery Driver Updater.app/Contents/Resources/Fiery Software Uninstaller.app"/>
+            <bundle CFBundleShortVersionString="5.0.005.0" CFBundleVersion="5.0.005.0" id="com.efi.print.pde.E4E7712A-705F-40C5-A512-16BBDAF36959.PInf" path="Contents/Resources/User Software/OSX/Printer Driver/PluginX64_sandbx_dynppd/EF018454 (FF).plugin"/>
+            <bundle CFBundleShortVersionString="1.0.0.006" CFBundleVersion="1.0.0.006" id="com.efi.Fiery-Driver-Updater" path="Contents/Resources/User Software/OSX/Printer Driver/Fiery Driver Updater.app"/>
+        </bundle-version>
+    </pkg-ref>
+    <options rootVolumeOnly="true" customize="never" require-scripts="false"/>
+    <domains enable_localSystem="true"/>
+    <choices-outline>
+        <line choice="com.efi.FieryPrinterDriverInstaller"/>
+    </choices-outline>
+    <choice id="com.efi.FieryPrinterDriverInstaller">
+        <pkg-ref id="com.efi.FieryPrinterDriverInstaller"/>
+    </choice>
+    <pkg-ref auth="Root" id="com.efi.FieryPrinterDriverInstaller" installKBytes="169960" version="0" onConclusion="none">#FieryPrinterDriverInstaller.pkg</pkg-ref>
+    <installation-check script="CheckIfLeopardOrHigher();"/>
+    <script>
+    function CheckIfLeopardOrHigher()
+    {
+      if(!(/* >= */ system.compareVersions(system.version.ProductVersion, '10.7') >= 0)) {
+    my.result.title = system.localizedString('ERROR_SYSTEM_VERSION_TITLE');
+    my.result.message = system.localizedString('ERROR_SYSTEM_VERSION_MSG');
+    my.result.type = 'Fatal';
+    return false;
+    }
+    return true;
+    }
+  </script>
+</installer-script>
